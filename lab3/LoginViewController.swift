@@ -21,6 +21,8 @@ class LoginViewController: UIViewController {
         
         
     }
+    
+    
 
    
     @IBAction func loginAction(sender: AnyObject) {
@@ -28,8 +30,6 @@ class LoginViewController: UIViewController {
         let loginSuccess = UIAlertAction(title: "Login Success", style: .Default, handler:  {(action) in
             
         })
-//
-//
         let loginFail = UIAlertAction(title: "Login Fail", style: .Default, handler:  {(action) in
             
         })
@@ -38,7 +38,11 @@ class LoginViewController: UIViewController {
             if user != nil {
                 let alertController = UIAlertController(title: "Login Success", message: "Success", preferredStyle: .Alert)
                 alertController.addAction(loginSuccess)
-               self.presentViewController(alertController, animated: true, completion: nil)
+//                self.presentViewController(alertController, animated: true, completion: nil)
+                
+                self.performSegueWithIdentifier("loginSegue", sender: self)
+                
+//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("Chat")
                 
             } else {
                 let alertController = UIAlertController(title: "Login Fail", message: "Error", preferredStyle: .Alert)
@@ -47,9 +51,11 @@ class LoginViewController: UIViewController {
             }
         }
 
-        
-        
-        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let navigationController = segue.destinationViewController as! UINavigationController
+        let vc = navigationController.topViewController as! ChatViewController
         
     }
 
